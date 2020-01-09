@@ -6,7 +6,7 @@
 /*   By: anjessen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:18:22 by anjessen          #+#    #+#             */
-/*   Updated: 2020/01/09 17:41:23 by anjessen         ###   ########.fr       */
+/*   Updated: 2020/01/09 18:47:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_rest(int fd, char rest[fd])
 		free(rest);
 		return (0);
 	}
-	if (!(new_rest = malloc(sizeof(char) * ((ft_strlen(rest) - i) + 1))))
+	if (!(new_rest = malloc(sizeof(char) * ((getlen(rest) - i) + 1))))
 		return (0);
 	i++;
 	while (rest[i])
@@ -65,7 +65,7 @@ int		get_next_line(int fd, char **line)
 {
 	char			*buff;
 	static char		*rest[OPEN_MAX];
-	int			ret;
+	int				ret;
 
 	ret = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
@@ -89,37 +89,3 @@ int		get_next_line(int fd, char **line)
 		return (0);
 	return (1);
 }
-
-/*int main()
-  {
-  int fd = open("test.txt", O_RDONLY);
-  char *line = NULL;
-//int fd = -1;
-while ((get_next_line(fd, &line)) > 0)
-{
-printf("================\n");
-printf("LINE: %s\n", line);
-printf("================\n");
-free(line);
-}
-//printf("LINE: %s\n", line);
-//free(line);
-//system("leaks a.out");
-
-return 0;
-}*/
-
-/*int main()
-{
-        int fd = open("test.txt", O_RDONLY);
-        char *line = NULL;
-        while ((get_next_line(fd, &line)) > 0)
-        {
-                printf("%s\n", line);
-        }
-        printf("%s\n", line);
-        free(line);
-        //system("leaks a.out");
-        return 0;
-
-}*/

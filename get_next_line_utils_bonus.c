@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/09 18:38:37 by qbackaer          #+#    #+#             */
+/*   Updated: 2020/01/09 18:46:43 by qbackaer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-size_t		ft_strlen(const char *s)
+size_t		getlen(const char *s)
 {
 	int i;
 
@@ -32,34 +44,32 @@ void		*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-char    *ft_strjoin(char *s1,  char *s2)
+char		*ft_strjoin(char *s1, char *s2)
 {
-        char    *str;
-        int             i;
-        int             j;
-        size_t          len;
+	char	*str;
+	int		i;
+	int		j;
 
-        if (!s2)
-                return (NULL);
-        i = 0;
-        j = 0;
-        len = ft_strlen(s1) + ft_strlen(s2) + 1;
-        if (!(str = (char*)malloc(sizeof(char) * (len))))
-                return (NULL);
-        while (s1 && s1[i])
-        {
-                str[i] = s1[i];
-                i++;
-        }
-        while (s2[j])
-        {
-                str[j + i] = s2[j];
-                j++;
-        }
-	str[len - 1] = '\0';
-        if (s1 != NULL)
-                free(s1);
-        return (str);
+	if (!s2)
+		return (NULL);
+	i = 0;
+	j = 0;
+	if (!(str = (char*)malloc(sizeof(char) * (getlen(s1) + getlen(s2) + 1))))
+		return (NULL);
+	while (s1 && s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[j + i] = s2[j];
+		j++;
+	}
+	str[getlen(s1) + getlen(s2)] = '\0';
+	if (s1 != NULL)
+		free(s1);
+	return (str);
 }
 
 int			no_lastline(char *str)
